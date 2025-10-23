@@ -4,7 +4,14 @@ A simple IntelliJ IDEA / Android Studio plugin that provides syntax highlighting
 
 ## Features
 
-- **Green highlighting** for correct variable syntax: `${VARIABLE_NAME}`
+- **Code-like highlighting** for ALL `${}` expressions:
+  - Variables and identifiers: `${MY_VAR_1}`, `${APP_ID}` (highlighted like Kotlin properties)
+  - Property references: `${output.strings.add}`, `${user.name}`
+  - String literals: `"text"` or `'text'` inside expressions
+  - Operators: `+`, `-`, `*`, `/`, `==`, `!=`, `<`, `>`, etc.
+- **Examples:**
+  - Simple: `${TEST_PRODUCT_NAME_1}` - identifier highlighted
+  - Complex: `${output.strings.add + " 1 " + output.strings.item}` - full code highlighting
 - **Red highlighting** for incorrect variable syntax: `$VARIABLE_NAME` (missing braces)
 - **File detection** - Only applies to YAML files in `maestro` folders
 - **Warnings** - Shows inline warnings for incorrect variable syntax

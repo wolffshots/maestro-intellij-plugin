@@ -11,8 +11,11 @@ import javax.swing.Icon
 class MaestroColorSettingsPage : ColorSettingsPage {
     companion object {
         private val DESCRIPTORS = arrayOf(
-            AttributesDescriptor("Maestro Good Variable (\${VAR})", MaestroYamlAnnotator.GOOD_VARIABLE),
-            AttributesDescriptor("Maestro Bad Variable (\$VAR)", MaestroYamlAnnotator.BAD_VARIABLE)
+            AttributesDescriptor("Expression Background", MaestroYamlAnnotator.EXPRESSION_BACKGROUND),
+            AttributesDescriptor("Variable/Identifier (in expressions)", MaestroYamlAnnotator.PROPERTY_REFERENCE),
+            AttributesDescriptor("String Literal (in expressions)", MaestroYamlAnnotator.STRING_LITERAL),
+            AttributesDescriptor("Operator (in expressions)", MaestroYamlAnnotator.OPERATOR),
+            AttributesDescriptor("Bad Variable (\$VAR)", MaestroYamlAnnotator.BAD_VARIABLE)
         )
     }
 
@@ -24,28 +27,38 @@ class MaestroColorSettingsPage : ColorSettingsPage {
         # Maestro YAML Example
         appId: com.example.app
         ---
+        # All ${'$'}{} expressions are code-like:
         - launchApp:
-            appId: <good>${'$'}{APP_ID}</good>
+            appId: <expr>${'$'}{<var>APP_ID</var>}</expr>
+            
+        - inputText: <expr>${'$'}{<var>USER_NAME</var>}</expr>
+        
+        - assertVisible:
+            text: <expr>${'$'}{<var>output.strings.add</var> <op>+</op> <str>" 1 "</str> <op>+</op> <var>output.strings.item</var>}</expr>
             
         - tapOn:
-            text: <bad>${'$'}BUTTON_TEXT</bad>
+            text: <expr>${'$'}{<str>"Hello "</str> <op>+</op> <var>user.name</var> <op>+</op> <str>"!"</str>}</expr>
             
-        - inputText: <good>${'$'}{USER_NAME}</good>
-        - assertVisible: <bad>${'$'}ERROR_MSG</bad>
+        - runScript:
+            when: <expr>${'$'}{<var>count.value</var> <op>></op> <str>"5"</str>}</expr>
+            
+        - inputText:
+            text: <expr>${'$'}{<var>user.firstName</var> <op>+</op> <str>" "</str> <op>+</op> <var>user.lastName</var>}</expr>
+            
+        - setVariable:
+            name: <expr>${'$'}{<var>MY_VAR_1</var>}</expr>
         
-        # Correct usage (green):
-        env:
-          APP_ID: <good>${'$'}{MY_APP_ID}</good>
-          USER: <good>${'$'}{USERNAME}</good>
-          
         # Incorrect usage (red - will show warning):
         bad_vars:
           - <bad>${'$'}VAR1</bad>
-          - <bad>${'$'}VAR2</bad>
+          - <bad>${'$'}MISSING_BRACES</bad>
     """.trimIndent()
 
     override fun getAdditionalHighlightingTagToDescriptorMap(): Map<String, TextAttributesKey> = mapOf(
-        "good" to MaestroYamlAnnotator.GOOD_VARIABLE,
+        "expr" to MaestroYamlAnnotator.EXPRESSION_BACKGROUND,
+        "var" to MaestroYamlAnnotator.PROPERTY_REFERENCE,
+        "str" to MaestroYamlAnnotator.STRING_LITERAL,
+        "op" to MaestroYamlAnnotator.OPERATOR,
         "bad" to MaestroYamlAnnotator.BAD_VARIABLE
     )
 

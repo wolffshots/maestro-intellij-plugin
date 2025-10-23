@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.maestro.yaml-highlighter</id>
     <name>Maestro YAML Highlighter</name>
-    <vendor email="support@maestro.mobile.dev" url="https://maestro.mobile.dev">Maestro</vendor>
+    <vendor email="16850875+wolffshots@users.noreply.github.com">wolffshots</vendor>
 
     <description><![CDATA[
     Syntax highlighting for Maestro YAML files.
