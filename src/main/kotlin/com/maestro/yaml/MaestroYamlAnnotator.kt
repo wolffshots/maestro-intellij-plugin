@@ -26,11 +26,6 @@ class MaestroYamlAnnotator : Annotator {
             DefaultLanguageHighlighterColors.IDENTIFIER
         )
         
-        val SIMPLE_VARIABLE = TextAttributesKey.createTextAttributesKey(
-            "MAESTRO_SIMPLE_VARIABLE",
-            DefaultLanguageHighlighterColors.STRING
-        )
-        
         val STRING_LITERAL = TextAttributesKey.createTextAttributesKey(
             "MAESTRO_STRING_LITERAL",
             DefaultLanguageHighlighterColors.STRING
