@@ -1,0 +1,26 @@
+<idea-plugin>
+    <id>com.maestro.yaml-highlighter</id>
+    <name>Maestro YAML Highlighter</name>
+    <vendor email="support@maestro.mobile.dev" url="https://maestro.mobile.dev">Maestro</vendor>
+
+    <description><![CDATA[
+    Syntax highlighting for Maestro YAML files.
+    <br/>
+    <br/>
+    Features:
+    <ul>
+        <li>Highlights ${VARIABLE} syntax in green (correct format)</li>
+        <li>Highlights $VARIABLE syntax in red (incorrect format - missing braces)</li>
+        <li>Only applies to YAML files in 'maestro' folders</li>
+    </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator language="yaml" implementationClass="com.maestro.yaml.MaestroYamlAnnotator"/>
+        <colorSettingsPage implementation="com.maestro.yaml.MaestroColorSettingsPage"/>
+    </extensions>
+</idea-plugin>
+
