@@ -1,5 +1,6 @@
 # Gradle
 .gradle/
+.cursor/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 

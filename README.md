@@ -1,8 +1,10 @@
 # Maestro YAML Highlighter - IntelliJ Plugin
 
-A simple IntelliJ IDEA / Android Studio plugin that provides syntax highlighting for Maestro YAML files.
+A comprehensive IntelliJ IDEA / Android Studio plugin that provides advanced IDE support for Maestro mobile testing framework YAML files.
 
 ## Features
+
+### Syntax Highlighting
 
 - **Code-like highlighting** for ALL `${}` expressions:
   - Variables and identifiers: `${MY_VAR_1}`, `${APP_ID}` (highlighted like Kotlin properties)
@@ -13,8 +15,25 @@ A simple IntelliJ IDEA / Android Studio plugin that provides syntax highlighting
   - Simple: `${TEST_PRODUCT_NAME_1}` - identifier highlighted
   - Complex: `${output.strings.add + " 1 " + output.strings.item}` - full code highlighting
 - **Red highlighting** for incorrect variable syntax: `$VARIABLE_NAME` (missing braces)
-- **File detection** - Only applies to YAML files in `maestro` folders
 - **Warnings** - Shows inline warnings for incorrect variable syntax
+
+### Intelligent Code Completion (Intellisense)
+
+- **Command suggestions** - Auto-complete for all Maestro commands (launchApp, tapOn, assertVisible, etc.)
+- **Configuration keys** - Suggestions for top-level flow configuration (appId, name, tags, env, etc.)
+- **Property suggestions** - Context-aware completion for command properties
+- **Value suggestions** - Smart suggestions for property values:
+  - Directions: UP, DOWN, LEFT, RIGHT
+  - Orientations: portrait, landscape
+  - Boolean values: true, false
+  - Permission values: allow, deny, unset
+  - Key names: Enter, Backspace, etc.
+- **Command-specific properties** - Relevant properties based on the command context
+
+### General
+
+- **File detection** - Only applies to YAML files in `maestro` folders
+- **Context-aware** - Different suggestions based on cursor position in the YAML structure
 
 ## Building the Plugin
 
@@ -143,11 +162,40 @@ Run the plugin in a test IDE:
 - **All future IDE versions**: No upper version limit
 - **Requires**: YAML plugin (bundled with IDE)
 
+## Documentation
+
+The plugin includes comprehensive documentation:
+
+- **[INTELLISENSE.md](INTELLISENSE.md)** - Guide to using code completion features
+  - How to trigger intellisense
+  - Available completions by context
+  - Usage tips and examples
+  - Troubleshooting guide
+  
+- **[SELECTOR_REFERENCE.md](SELECTOR_REFERENCE.md)** - Quick reference for all Maestro selectors
+  - Basic selectors (text, id, enabled, checked, etc.)
+  - Coordinate & dimension selectors (point, width, height, tolerance)
+  - Relative position selectors (above, below, leftOf, rightOf)
+  - Hierarchy selectors (childOf, containsChild, containsDescendants)
+  - Command-specific properties
+  - Examples and tips
+  
+- **[MAESTRO_SYNTAX.md](MAESTRO_SYNTAX.md)** - Complete reference for Maestro YAML syntax
+  - Flow configuration options
+  - All available commands with examples
+  - Comprehensive selector documentation
+  - JavaScript integration
+  - Advanced features and best practices
+  
+- **[EXPRESSION_HIGHLIGHTING.md](EXPRESSION_HIGHLIGHTING.md)** - Details on variable expression highlighting
+
 ## Contributing
 
-This is a simple plugin for Maestro YAML highlighting. Feel free to extend it with additional features:
-- Code completion for Maestro commands
-- Validation of Maestro-specific syntax
+This plugin provides comprehensive IDE support for Maestro testing framework. Potential future enhancements:
 - Quick fixes to convert `$VAR` to `${VAR}`
-- Support for environment variable files
+- Inline documentation for commands (hover support)
+- Live templates for common patterns
+- Schema validation for Maestro YAML structure
+- Support for jumping to referenced flow files
+- Environment variable file support
 

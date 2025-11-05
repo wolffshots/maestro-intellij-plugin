@@ -4,13 +4,16 @@
     <vendor email="16850875+wolffshots@users.noreply.github.com">wolffshots</vendor>
 
     <description><![CDATA[
-    Syntax highlighting for Maestro YAML files.
+    Comprehensive IDE support for Maestro mobile testing framework YAML files.
     <br/>
     <br/>
     Features:
     <ul>
-        <li>Highlights ${VARIABLE} syntax in green (correct format)</li>
-        <li>Highlights $VARIABLE syntax in red (incorrect format - missing braces)</li>
+        <li>Syntax highlighting for ${VARIABLE} expressions with code-like highlighting</li>
+        <li>Intelligent code completion for commands, properties, and values</li>
+        <li>Context-aware suggestions based on cursor position</li>
+        <li>Warnings for incorrect variable syntax ($VARIABLE instead of ${VARIABLE})</li>
+        <li>Support for all Maestro commands and configuration options</li>
         <li>Only applies to YAML files in 'maestro' folders</li>
     </ul>
     ]]></description>
@@ -21,6 +24,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <annotator language="yaml" implementationClass="com.maestro.yaml.MaestroYamlAnnotator"/>
         <colorSettingsPage implementation="com.maestro.yaml.MaestroColorSettingsPage"/>
+        <completion.contributor language="yaml" implementationClass="com.maestro.yaml.MaestroCompletionContributor"/>
     </extensions>
 </idea-plugin>
 
